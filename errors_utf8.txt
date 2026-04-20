@@ -1,0 +1,5 @@
+﻿src/components/layout/BottomNav.tsx(3,20): error TS6133: 'useEffect' is declared but its value is never read.
+src/pages/admin/AdminDashboard.tsx(12,12): error TS6133: 'loading' is declared but its value is never read.
+src/pages/admin/AdminLogin.tsx(3,47): error TS6133: 'Cpu' is declared but its value is never read.
+src/pages/admin/CategoryManagement.tsx(4,26): error TS6133: 'Tag' is declared but its value is never read.
+src/pages/admin/CategoryManagement.tsx(5,24): error TS6133: 'List' is declared but its value is never read.
