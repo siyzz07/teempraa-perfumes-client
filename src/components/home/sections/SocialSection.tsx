@@ -22,9 +22,9 @@ const SocialSection = ({ shopSettings }: SocialSectionProps) => {
                     <motion.div
                         initial={{ scale: 0.9, opacity: 0 }}
                         whileInView={{ scale: 1, opacity: 1 }}
-                        className="w-20 h-20 rounded-full border border-emerald-500/30 flex items-center justify-center text-emerald-500"
+                        className="w-32 h-32 md:w-40 md:h-40 rounded-full border border-emerald-500/30 flex items-center justify-center text-emerald-500 bg-emerald-500/5 shadow-[0_0_50px_rgba(16,185,129,0.1)] mb-4"
                     >
-                        <Instagram size={32} strokeWidth={1} />
+                        <Instagram size={48} md-size={64} strokeWidth={1} />
                     </motion.div>
 
                     <div className="space-y-6">
@@ -39,34 +39,42 @@ const SocialSection = ({ shopSettings }: SocialSectionProps) => {
 
                     <div className="flex flex-wrap justify-center gap-6 md:gap-12">
                         {[
-                            { name: 'Instagram', label: `@${shopSettings?.shopName?.toLowerCase().replace(/\s+/g, '') || 'perfume'}_olfactive`, icon: Instagram },
-                            { name: 'X Collection', label: `${shopSettings?.shopName?.toLowerCase().replace(/\s+/g, '') || 'perfume'}_manor`, icon: Twitter },
-                            { name: 'Facebook', label: shopSettings?.shopName || 'Maison Imperial', icon: Facebook }
+                            { 
+                                name: 'Instagram', 
+                                label: shopSettings?.instagram?.startsWith('@') ? shopSettings.instagram : `@${shopSettings?.instagram?.split('/').pop() || 'manor'}`, 
+                                icon: Instagram,
+                                href: shopSettings?.instagram?.startsWith('http') ? shopSettings.instagram : `https://instagram.com/${shopSettings?.instagram?.replace('@', '')}`
+                            },
                         ].map((social, i) => (
                             <motion.a 
                                 key={i}
-                                href="#" 
+                                href={social.href} 
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 whileHover={{ y: -5 }}
                                 className="flex items-center gap-4 group"
                             >
-                                <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-zinc-500 group-hover:bg-emerald-500 group-hover:text-black transition-all duration-500">
-                                    <social.icon size={20} />
+                                <div className="w-16 h-16 rounded-[2rem] bg-white/5 flex items-center justify-center text-zinc-500 group-hover:bg-emerald-500 group-hover:text-black transition-all duration-500">
+                                    <social.icon size={28} />
                                 </div>
                                 <div className="text-left">
-                                    <p className="text-[8px] font-black uppercase tracking-[0.3em] text-zinc-600 group-hover:text-emerald-500 transition-colors">{social.name}</p>
-                                    <p className="text-white text-[10px] font-bold tracking-widest uppercase">{social.label}</p>
+                                    <p className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-600 group-hover:text-emerald-500 transition-colors mb-1">{social.name}</p>
+                                    <p className="text-white text-lg md:text-2xl font-serif font-bold italic tracking-tight uppercase leading-none">{social.label}</p>
                                 </div>
                             </motion.a>
                         ))}
                     </div>
 
-                    <motion.button
+                    <motion.a
+                        href={shopSettings?.instagram?.startsWith('http') ? shopSettings.instagram : `https://instagram.com/${shopSettings?.instagram?.replace('@', '')}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         className="mt-12 bg-emerald-500 text-black px-12 py-5 rounded-full font-black text-[10px] uppercase tracking-[0.4em] shadow-[0_20px_40px_rgba(16,185,129,0.3)] hover:bg-white transition-all flex items-center gap-4"
                     >
                         Enter the Manor <ExternalLink size={14} />
-                    </motion.button>
+                    </motion.a>
                 </div>
             </motion.div>
         </div>

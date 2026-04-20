@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 interface ContactSectionProps {
   shopSettings: {
     phone?: string;
+    whatsapp?: string;
     email?: string;
     address?: string;
     shopName?: string;
@@ -13,6 +14,7 @@ interface ContactSectionProps {
 
 const ContactSection = ({ shopSettings }: ContactSectionProps) => {
   const phone = shopSettings?.phone || '+91 12345 67890';
+  const whatsapp = shopSettings?.whatsapp || phone;
   const email = shopSettings?.email || 'heritage@teempraa.com';
   const address = shopSettings?.address || 'The Imperial Pavilion, Emerald District, Grasse';
   const lat = shopSettings?.location?.lat || 0;
@@ -46,7 +48,7 @@ const ContactSection = ({ shopSettings }: ContactSectionProps) => {
                 <div className="space-y-8">
                     {[
                         { label: 'Studio Correspondence', value: email, icon: Mail, href: `mailto:${email}` },
-                        { label: 'Direct Line (WhatsApp)', value: phone, icon: MessageSquare, href: `https://wa.me/${phone.replace(/\s+/g, '')}` },
+                        { label: 'Direct Line (WhatsApp)', value: whatsapp, icon: MessageSquare, href: `https://wa.me/${whatsapp.replace(/\D/g, '')}` },
                         { label: 'Exhibition Pavilion', value: address, icon: MapPin, href: mapsUrl }
                     ].map((item, i) => (
                         <motion.a
@@ -72,35 +74,38 @@ const ContactSection = ({ shopSettings }: ContactSectionProps) => {
                 </div>
             </div>
 
-            {/* 🖼️ The Visual Anchor */}
+            {/* 🖼️ The Contact Detail Hub - Replacing the Image visual */}
             <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className="relative aspect-square lg:aspect-[4/5] rounded-[4rem] md:rounded-[6rem] overflow-hidden shadow-[0_50px_100px_rgba(0,0,0,0.6)] border border-white/5"
+                className="relative bg-gradient-to-br from-white/[0.03] to-transparent rounded-[4rem] border border-white/10 p-12 md:p-20 flex flex-col justify-center items-center text-center space-y-12 shadow-[0_40px_80px_rgba(0,0,0,0.4)]"
             >
-                <div className="absolute inset-0 bg-gradient-to-t from-[#011a14] via-transparent to-transparent z-10" />
-                <motion.img 
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 3 }}
-                    src="https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=1200&auto=format&fit=crop" 
-                    className="w-full h-full object-cover grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-1000"
-                    alt="The Sovereign Bottle"
-                />
+                <div className="absolute inset-0 bg-emerald-500/5 blur-[100px] rounded-full -z-10" />
                 
-                <div className="absolute bottom-16 left-12 right-12 z-20 text-center space-y-8">
-                    <div className="p-8 md:p-12 rounded-[3.5rem] bg-black/40 backdrop-blur-2xl border border-white/10">
-                        <Clock size={32} className="text-emerald-500 mx-auto mb-6 animate-pulse" />
-                        <h4 className="text-2xl font-serif font-black italic text-white mb-2">Private Hours</h4>
-                        <p className="text-zinc-400 text-xs font-black uppercase tracking-[0.4em]">10:00 — 20:30 (GMT+2)</p>
-                    </div>
-                    
-                    <a 
-                        href="#gallery"
-                        className="inline-flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.5em] text-emerald-500 hover:text-white transition-colors"
-                    >
-                        Explore the archives <Send size={14} />
-                    </a>
+                <h3 className="text-3xl md:text-5xl font-serif font-black italic text-white">Direct Connect.</h3>
+                
+                <div className="w-full space-y-4">
+                    {[
+                        { label: 'Studio Email', value: email, icon: Mail, href: `mailto:${email}` },
+                        { label: 'Voice Line', value: phone, icon: Send, href: `tel:${phone.replace(/\D/g, '')}` },
+                        { label: 'WhatsApp', value: whatsapp, icon: MessageSquare, href: `https://wa.me/${whatsapp.replace(/\D/g, '')}` }
+                    ].map((item, i) => (
+                        <motion.a 
+                            key={i}
+                            href={item.href}
+                            whileHover={{ x: 10, backgroundColor: 'rgba(255,255,255,0.05)' }}
+                            className="flex items-center gap-6 p-6 rounded-3xl border border-white/5 bg-white/[0.02] transition-all group"
+                        >
+                            <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 group-hover:bg-emerald-500 group-hover:text-black transition-all">
+                                <item.icon size={20} />
+                            </div>
+                            <div className="text-left">
+                                <p className="text-[7px] font-black uppercase tracking-[0.4em] text-zinc-500 mb-1">{item.label}</p>
+                                <p className="text-white font-bold text-sm md:text-lg">{item.value}</p>
+                            </div>
+                        </motion.a>
+                    ))}
                 </div>
             </motion.div>
         </div>

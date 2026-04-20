@@ -4,10 +4,17 @@ import { motion } from 'framer-motion';
 
 import { useShopStore } from '../../store/useStore';
 
+import { Link } from 'react-router-dom';
+
 const Footer: React.FC = () => {
   const shopSettings = useShopStore((s) => s.settings);
   
   const scrollToId = (id: string) => {
+    // If we are not on the home page, we should navigate home first
+    if (window.location.pathname !== "/") {
+      window.location.href = `/#${id}`;
+      return;
+    }
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -30,11 +37,22 @@ const Footer: React.FC = () => {
                   The standard of excellence. We define the future of high olfaction through rare botanical mastery.
                 </p>
                 <div className="flex gap-8">
-                   {[Instagram, Twitter, Facebook].map((Social, i) => (
-                     <motion.div key={i} whileHover={{ y: -5, color: '#10b981' }} className="cursor-pointer text-zinc-500">
-                       <Social size={22} />
-                     </motion.div>
-                   ))}
+                  <motion.a 
+                    href={shopSettings?.instagram?.startsWith('http') ? shopSettings.instagram : `https://instagram.com/${shopSettings?.instagram?.replace('@', '')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ y: -5, color: '#10b981' }} 
+                    className="cursor-pointer text-zinc-500"
+                  >
+                    <Instagram size={22} />
+                  </motion.a>
+                  {/* Keep other icons as decorative or add if settings exist */}
+                  <motion.div whileHover={{ y: -5, color: '#10b981' }} className="cursor-pointer text-zinc-500 opacity-30">
+                    <Twitter size={22} />
+                  </motion.div>
+                  <motion.div whileHover={{ y: -5, color: '#10b981' }} className="cursor-pointer text-zinc-500 opacity-30">
+                    <Facebook size={22} />
+                  </motion.div>
                 </div>
              </div>
              
@@ -43,11 +61,14 @@ const Footer: React.FC = () => {
                <div className="space-y-8">
                   <span className="text-[10px] font-black uppercase tracking-[0.5em] text-emerald-500 block">Maison</span>
                   <ul className="space-y-6">
+                    <li>
+                      <Link to="/about" className="text-zinc-400 hover:text-white transition-colors text-[10px] font-black uppercase tracking-[0.3em]">
+                        About
+                      </Link>
+                    </li>
                     {[
                       { name: 'Collection', id: 'horizontal-perfumes' },
-                      { name: 'Visuals', id: 'gallery' },
                       { name: 'Atelier', id: 'contact' },
-                      { name: 'Heritage', id: 'gallery' }
                     ].map((link) => (
                       <li key={link.name}>
                         <button 

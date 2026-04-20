@@ -15,6 +15,7 @@ import Navbar from "./components/layout/Navbar";
 import BottomNav from "./components/layout/BottomNav";
 import Home from "./pages/Home";
 import Perfumes from "./pages/Perfumes";
+import About from "./pages/About";
 import Footer from "./components/layout/Footer";
 import CheckoutModal from "./components/ui/CheckoutModal";
 import LoadingScreen from "./components/ui/LoadingScreen";
@@ -96,6 +97,7 @@ function App() {
           {/* Public Customer Route */}
           <Route path="/" element={<Home />} />
           <Route path="/perfumes" element={<Perfumes />} />
+          <Route path="/about" element={<About />} />
 
           {/* Admin Login — redirects to dashboard if already logged in */}
           <Route

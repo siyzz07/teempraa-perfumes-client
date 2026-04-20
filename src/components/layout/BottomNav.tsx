@@ -1,5 +1,9 @@
-import { Home, ShoppingBag, UserPlus, Sparkles } from "lucide-react";
-import { useCartStore, useShopStore, useCartUIStore } from "../../store/useStore";
+import { Home, ShoppingBag, User, Sparkles } from "lucide-react";
+import {
+  useCartStore,
+  useShopStore,
+  useCartUIStore,
+} from "../../store/useStore";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -8,7 +12,7 @@ const navItems = [
   { id: "home", icon: Home, label: "Manor", path: "/" },
   { id: "perfumes", icon: Sparkles, label: "Scents", path: "/perfumes" },
   { id: "cart", icon: ShoppingBag, label: "Cart", path: null },
-  { id: "contact", icon: UserPlus, label: "Save", path: null },
+  { id: "about", icon: User, label: "About", path: "/about" },
 ];
 
 const BottomNav = () => {
@@ -17,7 +21,6 @@ const BottomNav = () => {
   const [activeTab, setActiveTab] = useState("home");
   const { items, isAnimating } = useCartStore();
   const { toggleCart } = useCartUIStore();
-  const shop = useShopStore((s) => s.settings);
   const cartCount = items.reduce((acc, item) => acc + item.qty, 0);
 
   useEffect(() => {
@@ -25,34 +28,9 @@ const BottomNav = () => {
     if (current) setActiveTab(current.id);
   }, [location.pathname]);
 
-  const handleSaveContact = () => {
-    const name = shop?.shopName || "Imperial";
-    const vcard = `BEGIN:VCARD
-VERSION:3.0
-FN:${name}
-N:;${name};;;
-TEL;TYPE=CELL:${shop?.phone || ""}
-EMAIL;TYPE=WORK:${shop?.email || ""}
-ORG:${name}
-TITLE:Premium Perfume Store
-ADR;TYPE=WORK:;;${shop?.address || ""}
-END:VCARD`;
-
-    const blob = new Blob([vcard], { type: "text/vcard;charset=utf-8" });
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.setAttribute("download", `${name}_Contact.vcf`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
   const handleTabClick = (id: string, path: string | null) => {
     if (id === "cart") {
       toggleCart(true);
-    } else if (id === "contact") {
-      handleSaveContact();
     } else if (path) {
       navigate(path);
       setActiveTab(id);

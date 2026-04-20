@@ -15,7 +15,7 @@ const Navbar = () => {
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "Perfumes", path: "/perfumes" },
-    { name: "Heritage", path: "/#gallery" },
+    { name: "About", path: "/about" },
   ];
 
   const handleNav = (path: string) => {

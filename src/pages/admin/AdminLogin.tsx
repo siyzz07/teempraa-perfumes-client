@@ -5,6 +5,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import ThemeToggle from "../../components/admin/ThemeToggle";
 import { authApi } from "../../api/authApi";
 import { useShopStore } from "../../store/useStore";
+import adminLoginBg from "../../../public/royalbg.png"
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
@@ -43,14 +44,14 @@ const AdminLogin = () => {
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 flex overflow-hidden font-sans transition-colors duration-500">
       {/* 🎨 Left Side: Elegant Minimalist Context */}
-      <div className="hidden lg:flex lg:w-[45%] relative bg-zinc-900 overflow-hidden">
+      <div className="hidden lg:flex lg:w-[45%] relative  overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2000&auto=format&fit=crop"
-            className="w-full h-full object-cover opacity-30 grayscale group-hover:grayscale-0 transition-all duration-[20s] scale-110"
+            src= {adminLoginBg} 
+            className="w-full h-full object-cover transition-all duration-[20s] scale-110"
             alt="Minimal Tech"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-zinc-900/60 to-zinc-900" />
+          {/* <div className="absolute inset-0 bg-gradient-to-b from-transparent via-zinc-900/60 to-zinc-900" /> */}
         </div>
 
         <div className="relative z-10 p-16 flex flex-col justify-between w-full h-full">
