@@ -3,12 +3,12 @@ import { useScroll } from 'framer-motion';
 import { productApi, shopApi } from '../api';
 
 import ContactSection from '../components/home/sections/ContactSection';
-import GallerySection from '../components/home/sections/GallerySection';
+// import GallerySection from '../components/home/sections/GallerySection';
 import SocialSection from '../components/home/sections/SocialSection';
 import HeroSection from '../components/home/sections/HeroSection';
 import BrandIdentitySection from '../components/home/sections/BrandIdentitySection';
 import HorizontalPerfumes from '../components/home/sections/HorizontalPerfumes';
-import AtelierSection from '../components/home/sections/AtelierSection';
+// import AtelierSection from '../components/home/sections/AtelierSection';
 import ProductDetailsModal from '../components/ui/ProductDetailsModal';
 import { Product } from '../types';
 
