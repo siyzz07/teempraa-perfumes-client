@@ -129,12 +129,12 @@ END:VCARD`;
       </div>
 
       {/* The Atelier Exhibition */}
-      <AtelierSection shopSettings={shopSettings} />
+      {/* <AtelierSection shopSettings={shopSettings} /> */}
 
       {/* The Gallery / Visual Story */}
-      <div id="gallery" className="relative z-10">
+      {/* <div id="gallery" className="relative z-10">
         <GallerySection />
-      </div>
+      </div> */}
 
       {/* The Contact & Booking */}
       <div id="contact" className="relative z-10 bg-[#011a14]">

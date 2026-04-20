@@ -89,6 +89,7 @@ const HorizontalPerfumes: React.FC<HorizontalPerfumesProps> = ({ products, onPro
                     originalPrice={product.originalPrice}
                     images={product.images}
                     scentType={product.scentType}
+                    onClick={() => onProductClick(product)}
                   />
                 </div>
               </motion.div>
