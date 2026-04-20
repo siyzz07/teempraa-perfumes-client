@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useScroll } from 'framer-motion';
 import { productApi, shopApi } from '../api';
-import { useSearchStore } from '../store/useStore';
+// import { useSearchStore } from '../store/useStore';
 import ContactSection from '../components/home/sections/ContactSection';
 import GallerySection from '../components/home/sections/GallerySection';
 import SocialSection from '../components/home/sections/SocialSection';
@@ -15,7 +15,7 @@ import { Product } from '../types';
 const Home = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [shopSettings, setShopSettings] = useState<any>(null);
-  const { query: searchQuery } = useSearchStore();
+  // const { query: searchQuery } = useSearchStore();
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   // Modal State

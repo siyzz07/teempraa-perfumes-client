@@ -3,7 +3,6 @@ import {
   X,
   ShoppingBag,
   MessageCircle,
-  Star,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";

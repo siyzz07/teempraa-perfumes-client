@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { motion, MotionValue, useTransform, useScroll, useSpring } from 'framer-motion';
+import { motion, MotionValue, useTransform, useSpring } from 'framer-motion';
 
 interface HeroSectionProps {
   scrollYProgress: MotionValue<number>;

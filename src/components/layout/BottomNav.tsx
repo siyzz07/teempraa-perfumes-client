@@ -1,4 +1,4 @@
-import { Home, Search, ShoppingBag, UserPlus, Sparkles } from "lucide-react";
+import { Home, ShoppingBag, UserPlus, Sparkles } from "lucide-react";
 import { useCartStore, useShopStore, useCartUIStore } from "../../store/useStore";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";

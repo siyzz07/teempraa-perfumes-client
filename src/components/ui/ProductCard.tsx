@@ -1,5 +1,4 @@
-import { motion } from 'framer-motion';
-import { useCartStore, useCheckoutStore } from '../../store/useStore';
+
 import ProductCardImage from './product-card/ProductCardImage';
 import ProductCardInfo from './product-card/ProductCardInfo';
 import ProductCardActions from './product-card/ProductCardActions';
@@ -32,7 +31,7 @@ const ProductCard = (props: ProductCardProps) => {
 
       <div className="p-4 md:p-5 flex flex-col flex-grow">
         <ProductCardInfo name={name} price={price} originalPrice={originalPrice} />
-        <ProductCardActions onAddCart={handleDetails} onOrderNow={handleDetails} />
+        <ProductCardActions onOrderNow={handleDetails} />
       </div>
     </div>
   );

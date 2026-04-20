@@ -1,13 +1,10 @@
-import { ShoppingBag, Check } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
+
 
 interface ProductCardActionsProps {
-  onAddCart: () => void;
   onOrderNow: () => void;
 }
 
-const ProductCardActions = ({ onAddCart, onOrderNow }: ProductCardActionsProps) => {
+const ProductCardActions = ({ onOrderNow }: ProductCardActionsProps) => {
   return (
     <div className="flex flex-col gap-2 mt-auto pt-4">
       <button 

@@ -1,4 +1,4 @@
-import { Star } from 'lucide-react';
+
 
 interface ProductCardInfoProps {
   name: string;
