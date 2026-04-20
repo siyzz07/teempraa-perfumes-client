@@ -1,4 +1,3 @@
-
 import ProductCardImage from './product-card/ProductCardImage';
 import ProductCardInfo from './product-card/ProductCardInfo';
 import ProductCardActions from './product-card/ProductCardActions';
@@ -14,7 +13,7 @@ interface ProductCardProps {
 }
 
 const ProductCard = (props: ProductCardProps) => {
-  const { id, name, price, originalPrice, images, scentType, onClick } = props;
+  const { name, price, originalPrice, images, scentType, onClick } = props;
 
   const mainImage = images && images.length > 0 ? images[0] : 'https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=400';
 
