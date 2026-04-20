@@ -1,6 +1,5 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Wind, Droplets, Sparkles, ShieldCheck, MapPin, Compass } from 'lucide-react';
+import { Wind, Droplets, Sparkles, MapPin, Compass } from 'lucide-react';
 
 interface AtelierSectionProps {
     shopSettings: any;

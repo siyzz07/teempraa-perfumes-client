@@ -16,7 +16,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   onBookAtelier 
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollY } = useScroll();
   
   // Parallax & Depth transforms
   const yBg = useTransform(scrollYProgress, [0, 1], [0, 200]);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Product } from '../../../types';
 import ProductCard from '../../ui/ProductCard';
@@ -88,7 +88,7 @@ const HorizontalPerfumes: React.FC<HorizontalPerfumesProps> = ({ products, onPro
                     price={product.price}
                     originalPrice={product.originalPrice}
                     images={product.images}
-                    category={product.category}
+                    scentType={product.scentType}
                   />
                 </div>
               </motion.div>
