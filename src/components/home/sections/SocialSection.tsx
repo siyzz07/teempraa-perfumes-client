@@ -65,16 +65,7 @@ const SocialSection = ({ shopSettings }: SocialSectionProps) => {
                         ))}
                     </div>
 
-                    <motion.a
-                        href={shopSettings?.instagram?.startsWith('http') ? shopSettings.instagram : `https://instagram.com/${shopSettings?.instagram?.replace('@', '')}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="mt-12 bg-emerald-500 text-black px-12 py-5 rounded-full font-black text-[10px] uppercase tracking-[0.4em] shadow-[0_20px_40px_rgba(16,185,129,0.3)] hover:bg-white transition-all flex items-center gap-4"
-                    >
-                        Enter the Manor <ExternalLink size={14} />
-                    </motion.a>
+         
                 </div>
             </motion.div>
         </div>

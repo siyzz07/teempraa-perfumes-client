@@ -116,10 +116,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           </h1>
 
           <p className="text-zinc-400 text-lg md:text-xl font-light tracking-wide max-w-xl mx-auto leading-relaxed">
-            A liquid masterpiece distilled into the essence of power. Sourced from the mist-covered peaks of Bulgaria.
+            A fragrance crafted to express confidence, elegance, and leave a lasting impression wherever you go.
           </p>
 
-          <div className="flex flex-col md:flex-row items-center justify-center gap-8 pt-6">
+          {/* <div className="flex flex-col md:flex-row items-center justify-center gap-8 pt-6">
             <motion.button
               whileHover={{ scale: 1.05, backgroundColor: "#fff", color: "#000" }}
               whileTap={{ scale: 0.95 }}
@@ -134,7 +134,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             >
               Discover The Heritage →
             </button>
-          </div>
+          </div> */}
         </motion.div>
 
         {/* Floating Technical Specs (Holographic) */}

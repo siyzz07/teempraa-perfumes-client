@@ -43,7 +43,7 @@ const HorizontalPerfumes: React.FC<HorizontalPerfumesProps> = ({ products, onPro
               transition={{ delay: 0.1 }}
               className="text-4xl md:text-6xl font-serif font-black text-white italic tracking-tighter leading-none"
             >
-              The <span className="bg-gradient-to-r from-emerald-400 to-emerald-600 bg-clip-text text-transparent">Scent</span> Portfolio.
+              Our <span className="bg-gradient-to-r from-emerald-400 to-emerald-600 bg-clip-text text-transparent">some of </span> collection.
             </motion.h2>
           </div>
           
@@ -55,7 +55,7 @@ const HorizontalPerfumes: React.FC<HorizontalPerfumesProps> = ({ products, onPro
             onClick={() => navigate('/perfumes')}
             className="flex items-center gap-3 group px-6 py-3 rounded-full border border-white/5 bg-white/[0.02] hover:bg-emerald-500/10 hover:border-emerald-500/30 transition-all duration-500"
           >
-            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/50 group-hover:text-emerald-400">View Archive</span>
+            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/50 group-hover:text-emerald-400">Explore more</span>
             <ArrowRight size={14} className="text-white/30 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all" />
           </motion.button>
         </div>

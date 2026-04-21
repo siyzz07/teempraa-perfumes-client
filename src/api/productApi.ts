@@ -1,7 +1,7 @@
 import api from './config';
 
 export const productApi = {
-  getAll: () => api.get('/products'),
+  getAll: (params?: Record<string, unknown>) => api.get('/products', { params }),
   
   getById: (id: string) => api.get(`/products/${id}`),
   

@@ -58,13 +58,11 @@ const Home = () => {
 
   const fetchProducts = async () => {
     try {
-      const { data } = await productApi.getAll();
-      const mappedProducts = Array.isArray(data)
-        ? data.map((p: any) => ({
-            ...p,
-            id: p._id,
-          }))
-        : [];
+      const { data } = await productApi.getAll({ limit: 100 });
+      const mappedProducts = (data.products || []).map((p: any) => ({
+        ...p,
+        id: p._id,
+      }));
       setProducts(mappedProducts);
     } catch (error) {
       console.error("Error fetching products:", error);
