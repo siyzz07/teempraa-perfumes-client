@@ -51,9 +51,9 @@ const BrandIdentity: React.FC<BrandIdentityProps> = ({
               <span className="text-xl font-serif font-black italic">
                 Emerald
               </span>
-              <span className="text-[8px] font-black uppercase tracking-widest mt-1">
+              {/* <span className="text-[8px] font-black uppercase tracking-widest mt-1">
                 Certified
-              </span>
+              </span> */}
             </div>
           </motion.div>
 
@@ -66,7 +66,7 @@ const BrandIdentity: React.FC<BrandIdentityProps> = ({
             <div className="flex items-center gap-4 mb-8">
               <div className="w-12 h-[1px] bg-brand-accent" />
               <span className="text-brand-accent font-black text-[10px] uppercase tracking-[0.4em]">
-                Imperium
+                Teempraa
               </span>
             </div>
             <h2 className="text-5xl md:text-7xl font-serif font-black text-white mb-10 tracking-tighter leading-none">
@@ -75,7 +75,7 @@ const BrandIdentity: React.FC<BrandIdentityProps> = ({
             </h2>
             <p className="text-slate-300 text-lg md:text-xl leading-relaxed mb-12 font-light tracking-wide">
               {shopSettings?.description ||
-                "Reserved for those of discerning taste. Our emerald collection uses rare essential oils derived from high-altitude botanicals, aged to perfection."}
+               'Reserved for those of discerning taste.Crafted from rare high-altitude botanicals, each essence is patiently aged to reveal its fullest character.'}
             </p>
 
             <div className="grid grid-cols-2 gap-10 mb-16">

@@ -5,6 +5,9 @@ import {
   MessageCircle,
   ChevronLeft,
   ChevronRight,
+  Star,
+  Quote,
+  CheckCircle,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Product } from "../../types";
@@ -264,6 +267,64 @@ const ProductDetailsModal = ({
                         <ShoppingBag size={20} />
                       </button>
                     </div>
+                    {/* Imperial Reviews (Social Proof) */}
+                    {product.reviews && product.reviews.length > 0 && (
+                      <div className="mt-16 pt-16 border-t border-white/5">
+                        <div className="flex items-center gap-4 mb-12">
+                          <div className="h-[1px] w-8 bg-orange-500/40" />
+                          <span className="text-[10px] font-black uppercase tracking-[0.6em] text-orange-500">Imperial Feedback</span>
+                        </div>
+
+                        <div className="space-y-6">
+                          {product.reviews.map((rev, idx) => (
+                            <motion.div
+                              key={idx}
+                              initial={{ opacity: 0, y: 10 }}
+                              whileInView={{ opacity: 1, y: 0 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: idx * 0.1 }}
+                              className="p-8 rounded-3xl bg-white/[0.03] border border-white/5 group hover:bg-white/[0.05] transition-all duration-300"
+                            >
+                              <div className="relative z-10">
+                                <div className="flex items-center justify-between mb-8">
+                                  <div className="flex gap-1.5 p-1 rounded-full bg-black/20 border border-white/5 w-fit">
+                                    {[1, 2, 3, 4, 5].map((star) => (
+                                      <Star 
+                                        key={star} 
+                                        size={14} 
+                                        className={rev.rating >= star ? "text-emerald-400" : "text-white/5"} 
+                                        fill={rev.rating >= star ? "currentColor" : "none"} 
+                                      />
+                                    ))}
+                                  </div>
+                                  <div className="flex items-center gap-2 px-4 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                                    <CheckCircle size={10} className="text-emerald-500" />
+                                    <span className="text-[9px] font-black uppercase tracking-widest text-emerald-500">Verified Patron</span>
+                                  </div>
+                                </div>
+
+                                <p className="text-lg md:text-xl text-zinc-300 leading-relaxed mb-8">
+                                  "{rev.comment}"
+                                </p>
+
+                                <div className="flex items-center gap-4 pt-6 border-t border-white/5">
+                                  <div className="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500 font-bold text-sm">
+                                    {rev.user.charAt(0)}
+                                  </div>
+                                  <div>
+                                    <h4 className="text-xs font-bold uppercase tracking-widest text-white">
+                                      {rev.user}
+                                    </h4>
+                                    <p className="text-[10px] text-zinc-500 uppercase tracking-wider mt-0.5">Verified Customer</p>
+                                  </div>
+                                </div>
+                              </div>
+
+                            </motion.div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </motion.div>
                 </div>
               </div>

@@ -8,6 +8,11 @@ export interface Product {
   description: string;
   notes?: string;
   inStock?: boolean;
+  reviews?: Array<{
+    user: string;
+    comment: string;
+    rating: number;
+  }>;
 }
 
 export interface Category {

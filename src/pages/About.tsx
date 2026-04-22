@@ -13,7 +13,7 @@ const About = () => {
       <div className="max-w-6xl mx-auto relative z-10">
         
         {/* ✨ Simple & Premium Header */}
-        <header className="mb-24 text-center lg:text-left">
+        {/* <header className="mb-24 text-center lg:text-left">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -39,7 +39,7 @@ const About = () => {
           >
             "Olfactive architecture for the modern aristocrat. A sanctuary where rare molecules meet cinematic resonance."
           </motion.p>
-        </header>
+        </header> */}
 
         {/* 🌿 Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mb-40">
@@ -65,10 +65,11 @@ const About = () => {
           >
             <div className="space-y-8">
               <h2 className="text-4xl md:text-6xl font-serif font-black text-white leading-tight">
-                Crafting <br /> the <span className="text-emerald-500 underline decoration-emerald-500/20 underline-offset-8 italic">Unseen.</span>
+                About <span className="text-emerald-500 underline decoration-emerald-500/20 underline-offset-8 italic">Us.</span>
               </h2>
               <p className="text-zinc-400 leading-relaxed text-lg font-light tracking-wide">
-                At {shop?.shopName || 'Teempraa'}, we define the future of high olfaction. Our manor collection uses rare botanical extracts, aged in darkness to achieve a resonance reserved for the truly discerning.
+               Teempraa is built on a simple idea: true fragrance takes time.
+From carefully selected botanicals to slow maturation, every creation is designed to reveal its richness gradually.
               </p>
               <p className="text-zinc-500 leading-relaxed italic border-l border-emerald-500/30 pl-8">
                 {shop?.description || "Every bottle represents a cinematic journey—from the high-altitude botanicals to the final imperial seal. Quality is our only metric."}
@@ -97,7 +98,7 @@ const About = () => {
           <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-emerald-500/5 blur-[100px] -mr-40 -mt-40" />
           
           <div className="text-center mb-16 relative z-10">
-            <h2 className="text-4xl md:text-6xl font-serif font-black italic mb-4">Concierge.</h2>
+            <h2 className="text-4xl md:text-6xl font-serif font-black italic mb-4">Contact Us.</h2>
             <p className="text-zinc-500 text-sm font-light tracking-widest uppercase mb-12">Connect with the Manor</p>
           </div>
 
@@ -137,7 +138,7 @@ const About = () => {
               <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 mb-6">
                 <Mail size={24} />
               </div>
-              <h4 className="text-lg font-bold mb-2">Concierge</h4>
+              <h4 className="text-lg font-bold mb-2">Email</h4>
               <p className="text-zinc-500 text-[10px] text-center font-bold tracking-tight mb-2 break-all">{shop?.email || 'atelier@teempraa.com'}</p>
               <p className="text-emerald-500/60 text-[9px] uppercase font-black tracking-[0.2em]">{shop?.address?.split(',')[0] || 'Central Manor'}</p>
             </div>

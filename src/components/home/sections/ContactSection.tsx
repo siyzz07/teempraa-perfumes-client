@@ -61,7 +61,7 @@ const ContactSection = ({ shopSettings }: ContactSectionProps) => {
                 >
                     <div className="flex items-center gap-4">
                         <div className="w-12 h-px bg-emerald-500" />
-                        <span className="text-[10px] font-black uppercase tracking-[0.5em] text-emerald-500/70">Connect with the Crown</span>
+                        <span className="text-[10px] font-black uppercase tracking-[0.5em] text-emerald-500/70">Connect with the Teempraa</span>
                         <div className="w-12 h-px bg-emerald-500" />
                     </div>
                     <h2 className="text-5xl md:text-8xl font-serif font-black italic text-white tracking-tighter leading-none">

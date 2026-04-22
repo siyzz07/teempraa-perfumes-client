@@ -33,7 +33,7 @@ const SocialSection = ({ shopSettings }: SocialSectionProps) => {
                             <span className="text-emerald-500">Residence.</span>
                         </h2>
                         <p className="text-zinc-500 text-xl font-light tracking-wide max-w-2xl mx-auto italic">
-                            "Our digital manor is an extension of {shopSettings?.shopName || 'our physical atelier'}. Join the resonance of the modern aristocrat."
+                            "Our digital manor is an extension of {'Teempraa'}. Join the resonance of the modern aristocrat."
                         </p>
                     </div>
 

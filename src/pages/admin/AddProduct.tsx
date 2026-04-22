@@ -11,6 +11,9 @@ import {
   Upload,
   Loader2,
   Activity,
+  Star,
+  User,
+  MessageSquare,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import AdminLayout from "../../components/admin/AdminLayout";
@@ -32,6 +35,7 @@ const AddProduct = () => {
     description: "",
     images: [""],
     inStock: true,
+    reviews: [] as Array<{ user: string; comment: string; rating: number }>,
   });
 
   const [categories, setCategories] = useState<any[]>([]);
@@ -95,6 +99,24 @@ const AddProduct = () => {
       const newImages = formData.images.filter((_, i) => i !== index);
       setFormData((prev) => ({ ...prev, images: newImages }));
     }
+  };
+
+  const addReviewField = () => {
+    setFormData((prev) => ({
+      ...prev,
+      reviews: [...prev.reviews, { user: "", comment: "", rating: 5 }],
+    }));
+  };
+
+  const handleReviewChange = (index: number, field: string, value: any) => {
+    const newReviews = [...formData.reviews];
+    newReviews[index] = { ...newReviews[index], [field]: value };
+    setFormData((prev) => ({ ...prev, reviews: newReviews }));
+  };
+
+  const removeReviewField = (index: number) => {
+    const newReviews = formData.reviews.filter((_, i) => i !== index);
+    setFormData((prev) => ({ ...prev, reviews: newReviews }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -390,6 +412,100 @@ const AddProduct = () => {
                   </motion.div>
                 ))}
               </AnimatePresence>
+            </div>
+          </div>
+
+          {/* Imperial Reviews (Fake Reviews Setup) */}
+          <div className="bg-white dark:bg-zinc-900 p-6 md:p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm">
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-orange-500/10 text-orange-500 rounded-lg">
+                  <Star size={20} />
+                </div>
+                <h3 className="font-bold text-lg dark:text-white">Imperial Reviews</h3>
+              </div>
+              <button
+                type="button"
+                onClick={addReviewField}
+                className="text-xs font-bold text-brand-primary hover:underline hover:scale-105 transition-all"
+              >
+                + Add Review
+              </button>
+            </div>
+
+            <div className="space-y-6">
+              <AnimatePresence mode="popLayout">
+                {formData.reviews.map((rev, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    className="p-6 rounded-2xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-800 relative group"
+                  >
+                    <button
+                      type="button"
+                      onClick={() => removeReviewField(idx)}
+                      className="absolute top-4 right-4 p-2 text-zinc-400 hover:text-red-500 transition-colors opacity-0 group-hover:opacity-100"
+                    >
+                      <Trash2 size={16} />
+                    </button>
+
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="space-y-4">
+                        <div className="space-y-2">
+                          <label className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Reviewer Name</label>
+                          <div className="relative">
+                            <User size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" />
+                            <input
+                              value={rev.user}
+                              onChange={(e) => handleReviewChange(idx, "user", e.target.value)}
+                              placeholder="e.g. Alexander Pierce"
+                              className="w-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 py-2.5 pl-10 pr-4 rounded-xl text-sm dark:text-white outline-none focus:border-brand-primary transition-all"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="space-y-2">
+                          <label className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Rating (1-5 Stars)</label>
+                          <div className="flex gap-2">
+                            {[1, 2, 3, 4, 5].map((star) => (
+                              <button
+                                key={star}
+                                type="button"
+                                onClick={() => handleReviewChange(idx, "rating", star)}
+                                className={`transition-all ${rev.rating >= star ? 'text-orange-500' : 'text-zinc-300 dark:text-zinc-700'}`}
+                              >
+                                <Star size={18} fill={rev.rating >= star ? 'currentColor' : 'none'} />
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Testimonial</label>
+                        <div className="relative">
+                          <MessageSquare size={14} className="absolute left-3 top-3 text-zinc-400" />
+                          <textarea
+                            value={rev.comment}
+                            onChange={(e) => handleReviewChange(idx, "comment", e.target.value)}
+                            rows={3}
+                            placeholder="Share their experience..."
+                            className="w-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 py-2.5 pl-10 pr-4 rounded-xl text-sm dark:text-white outline-none focus:border-brand-primary transition-all resize-none"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+
+              {formData.reviews.length === 0 && (
+                <div className="py-8 text-center border-2 border-dashed border-zinc-100 dark:border-zinc-800 rounded-2xl">
+                  <p className="text-zinc-400 text-sm italic">No reviews added yet. Boost confidence with imperial feedback.</p>
+                </div>
+              )}
             </div>
           </div>
 

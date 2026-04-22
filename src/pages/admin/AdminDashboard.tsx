@@ -39,11 +39,12 @@ const AdminDashboard = () => {
   const fetchProducts = async () => {
     try {
       const { data } = await productApi.getAll({ limit: 1000 });
-      const items = (data.products || []).map((p: any) => ({
-        ...p,
-        id: p.id || p._id,
-      }));
-      setProducts(items);
+      const rawProducts = data.products || [];
+      const normalizedItems = rawProducts.map((p: any) => {
+        const id = p.id || p._id || p.id;
+        return { ...p, id };
+      });
+      setProducts(normalizedItems);
     } catch (error) {
       console.error("Error fetching products:", error);
       setProducts([]);

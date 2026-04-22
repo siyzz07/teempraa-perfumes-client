@@ -159,7 +159,7 @@ const Perfumes = () => {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-6xl md:text-9xl font-serif font-black tracking-tighter leading-none italic mb-6"
+            className="text-5xl md:text-7xl font-serif font-black tracking-tighter leading-none italic mb-6"
           >
             The{" "}
             <span className="text-emerald-400 drop-shadow-[0_0_30px_rgba(52,211,153,0.2)]">
