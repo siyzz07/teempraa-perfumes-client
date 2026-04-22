@@ -6,7 +6,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Star,
-  Quote,
   CheckCircle,
 } from "lucide-react";
 import { useState, useEffect } from "react";

@@ -1,4 +1,4 @@
-import { Instagram, Twitter, Facebook, ExternalLink } from 'lucide-react';
+import { Instagram } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface SocialSectionProps {

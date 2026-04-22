@@ -1,7 +1,6 @@
 import { Home, ShoppingBag, User, Sparkles } from "lucide-react";
 import {
   useCartStore,
-  useShopStore,
   useCartUIStore,
 } from "../../store/useStore";
 import { useState, useEffect } from "react";

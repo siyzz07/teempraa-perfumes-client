@@ -11,9 +11,7 @@ interface HeroSectionProps {
 
 const HeroSection: React.FC<HeroSectionProps> = ({ 
   scrollYProgress, 
-  mousePos, 
-  onExplore, 
-  onBookAtelier 
+  mousePos
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   

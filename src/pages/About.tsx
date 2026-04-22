@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Instagram, MessageSquare, Mail, CheckCircle, Award, ShieldCheck, Heart } from "lucide-react";
+import { Instagram, MessageSquare, Mail, Award, ShieldCheck } from "lucide-react";
 import { useShopStore } from "../store/useStore";
 
 const About = () => {

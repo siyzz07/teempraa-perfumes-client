@@ -1,14 +1,11 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Search,
   ArrowLeft,
   ChevronLeft,
   ChevronRight,
-  SlidersHorizontal,
   ChevronDown,
-  X,
-  Sparkles,
   SortAsc,
   Filter,
 } from "lucide-react";

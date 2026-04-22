@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { 
-    Save, Phone, Mail, MessageSquare, Instagram as InstagramIcon, Store, Globe
+    Save, Phone, Mail, MessageSquare, Instagram as InstagramIcon, Globe
 } from 'lucide-react';
 import AdminLayout from '../../components/admin/AdminLayout';
 import { shopApi } from '../../api/shopApi';

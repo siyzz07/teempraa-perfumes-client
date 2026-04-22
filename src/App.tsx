@@ -31,11 +31,19 @@ import ScentTypeManagement from "./pages/admin/CategoryManagement";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import PublicRoute from "./components/auth/PublicRoute";
 
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
   const isAdminPage = location.pathname.startsWith("/admin");
-  const { settings } = useShopStore();
-  const shopPhone = settings?.phone || "";
 
   return (
     <div className="min-h-screen flex flex-col transition-colors duration-300">
@@ -80,6 +88,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <Toaster position="bottom-right" reverseOrder={false} />
       <LoadingScreen isLoading={isInitialLoading} />
       <MainLayout>
