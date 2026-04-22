@@ -4,9 +4,10 @@ interface ProductCardImageProps {
   image: string;
   name: string;
   scentType: string;
+  inStock?: boolean;
 }
 
-const ProductCardImage = ({ image, name, scentType }: ProductCardImageProps) => {
+const ProductCardImage = ({ image, name, scentType, inStock = true }: ProductCardImageProps) => {
   return (
     <div className="relative aspect-square overflow-hidden bg-zinc-50 dark:bg-zinc-950">
       <motion.img 
@@ -22,6 +23,17 @@ const ProductCardImage = ({ image, name, scentType }: ProductCardImageProps) => 
           {scentType}
         </span>
       </div>
+
+      {/* Out of Stock Overlay */}
+      {!inStock && (
+        <div className="absolute inset-0 z-20 bg-black/40 backdrop-blur-[2px] flex items-center justify-center p-4">
+          <div className="px-5 py-2 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full shadow-2xl">
+            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white whitespace-nowrap">
+              Not Available
+            </span>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -9,7 +9,6 @@ import { Toaster } from "react-hot-toast";
 import {
   useThemeStore,
   useShopStore,
-  useCheckoutStore,
 } from "./store/useStore";
 import Navbar from "./components/layout/Navbar";
 import BottomNav from "./components/layout/BottomNav";
@@ -17,7 +16,6 @@ import Home from "./pages/Home";
 import Perfumes from "./pages/Perfumes";
 import About from "./pages/About";
 import Footer from "./components/layout/Footer";
-import CheckoutModal from "./components/ui/CheckoutModal";
 import LoadingScreen from "./components/ui/LoadingScreen";
 import CartModal from "./components/ui/CartModal";
 
@@ -36,8 +34,8 @@ import PublicRoute from "./components/auth/PublicRoute";
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
   const isAdminPage = location.pathname.startsWith("/admin");
-  const { isOpen, items, total, closeCheckout } = useCheckoutStore();
-  const shopPhone = useShopStore((s) => s.settings?.phone || "");
+  const { settings } = useShopStore();
+  const shopPhone = settings?.phone || "";
 
   return (
     <div className="min-h-screen flex flex-col transition-colors duration-300">
@@ -48,14 +46,6 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       {!isAdminPage && <BottomNav />}
       {!isAdminPage && <Footer />}
 
-      {/* Global Checkout Modal */}
-      <CheckoutModal
-        isOpen={isOpen}
-        onClose={closeCheckout}
-        items={items}
-        total={total}
-        shopPhone={shopPhone}
-      />
 
       {/* Global Cart Modal */}
       {!isAdminPage && <CartModal />}

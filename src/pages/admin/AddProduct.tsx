@@ -10,6 +10,7 @@ import {
   X,
   Upload,
   Loader2,
+  Activity,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import AdminLayout from "../../components/admin/AdminLayout";
@@ -30,6 +31,7 @@ const AddProduct = () => {
     scentType: "",
     description: "",
     images: [""],
+    inStock: true,
   });
 
   const [categories, setCategories] = useState<any[]>([]);
@@ -160,6 +162,14 @@ const AddProduct = () => {
           )}
         </div>
 
+        <div className="flex items-center gap-2">
+          <div className={`w-2 h-2 rounded-full ${formData.inStock ? 'bg-emerald-500' : 'bg-red-500'}`} />
+          <span className={`text-[10px] font-bold uppercase tracking-wider ${formData.inStock ? 'text-emerald-500' : 'text-red-500'}`}>
+            {formData.inStock ? 'Available' : 'Out of Stock'}
+          </span>
+        </div>
+      </div>
+
         <p className="text-zinc-500 dark:text-zinc-400 text-sm line-clamp-2">
           {formData.description || "Product description will appear here."}
         </p>
@@ -173,7 +183,6 @@ const AddProduct = () => {
           </div>
           <div className="w-12 h-12 rounded-xl bg-brand-primary flex items-center justify-center text-white">
             <Zap size={20} fill="currentColor" />
-          </div>
         </div>
       </div>
     </div>
@@ -288,6 +297,31 @@ const AddProduct = () => {
                   className="w-full bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 py-3 px-4 rounded-xl font-bold text-lg dark:text-zinc-500 outline-none focus:border-brand-primary transition-all"
                 />
               </div>
+            </div>
+          </div>
+
+          {/* Availability Status */}
+          <div className="bg-white dark:bg-zinc-900 p-6 md:p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className={`p-2 rounded-lg ${formData.inStock ? 'bg-emerald-500/10 text-emerald-500' : 'bg-red-500/10 text-red-500'}`}>
+                  <Activity size={20} />
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg dark:text-white">Product Availability</h3>
+                  <p className="text-xs text-zinc-500">Toggle whether this product is visible/purchasable</p>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setFormData(prev => ({ ...prev, inStock: !prev.inStock }))}
+                className={`relative inline-flex h-7 w-12 items-center rounded-full transition-colors focus:outline-none ${formData.inStock ? 'bg-emerald-500' : 'bg-zinc-300 dark:bg-zinc-700'}`}
+              >
+                <span
+                  className={`inline-block h-5 w-5 transform rounded-full bg-white transition-transform ${formData.inStock ? 'translate-x-6' : 'translate-x-1'}`}
+                />
+              </button>
             </div>
           </div>
 

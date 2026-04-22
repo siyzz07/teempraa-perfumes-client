@@ -9,11 +9,12 @@ interface ProductCardProps {
   originalPrice?: number;
   images: string[];
   scentType: string;
+  inStock?: boolean;
   onClick?: () => void;
 }
 
 const ProductCard = (props: ProductCardProps) => {
-  const { name, price, originalPrice, images, scentType, onClick } = props;
+  const { name, price, originalPrice, images, scentType, inStock = true, onClick } = props;
 
   const mainImage = images && images.length > 0 ? images[0] : 'https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=400';
 
@@ -26,7 +27,7 @@ const ProductCard = (props: ProductCardProps) => {
       onClick={onClick}
       className="group relative flex flex-col bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-100 dark:border-white/5 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer h-full"
     >
-      <ProductCardImage image={mainImage} name={name} scentType={scentType} />
+      <ProductCardImage image={mainImage} name={name} scentType={scentType} inStock={inStock} />
 
       <div className="p-4 md:p-5 flex flex-col flex-grow">
         <ProductCardInfo name={name} price={price} originalPrice={originalPrice} />

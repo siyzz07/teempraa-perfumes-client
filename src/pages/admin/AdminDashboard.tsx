@@ -41,7 +41,7 @@ const AdminDashboard = () => {
       const { data } = await productApi.getAll({ limit: 1000 });
       const items = (data.products || []).map((p: any) => ({
         ...p,
-        id: p._id,
+        id: p.id || p._id,
       }));
       setProducts(items);
     } catch (error) {
@@ -55,7 +55,7 @@ const AdminDashboard = () => {
 
     try {
       await productApi.delete(id);
-      setProducts(products.filter((p) => p._id !== id));
+      setProducts(products.filter((p) => p.id !== id));
       toast.success("Product deleted.");
     } catch (error) {
       console.error("Delete error:", error);
@@ -180,6 +180,9 @@ const AdminDashboard = () => {
                     <th className="p-4 text-xs font-bold text-zinc-500 uppercase tracking-wider">
                       Price
                     </th>
+                    <th className="p-4 text-xs font-bold text-zinc-500 uppercase tracking-wider">
+                      Status
+                    </th>
                     <th className="p-4 text-xs font-bold text-zinc-500 uppercase tracking-wider text-right">
                       Actions
                     </th>
@@ -218,6 +221,14 @@ const AdminDashboard = () => {
                           <span className="font-bold text-zinc-900 dark:text-white">
                             ₹{p.price?.toLocaleString()}
                           </span>
+                        </td>
+                        <td className="p-4">
+                          <div className="flex items-center gap-1.5">
+                            <div className={`w-2 h-2 rounded-full ${p.inStock ? 'bg-emerald-500' : 'bg-red-500'}`} />
+                            <span className={`text-[10px] font-bold uppercase tracking-wider ${p.inStock ? 'text-emerald-500' : 'text-red-500'}`}>
+                              {p.inStock ? 'Available' : 'Unavailable'}
+                            </span>
+                          </div>
                         </td>
                         <td className="p-4">
                           <div className="flex justify-end gap-2">
@@ -265,7 +276,15 @@ const AdminDashboard = () => {
                     <h4 className="font-bold text-lg text-zinc-900 dark:text-white truncate">
                       {p.name}
                     </h4>
-                    <p className="text-xs text-zinc-500 mt-0.5">{p.scentType}</p>
+                    <div className="flex items-center justify-between mt-0.5">
+                      <p className="text-xs text-zinc-500">{p.scentType}</p>
+                      <div className="flex items-center gap-1">
+                        <div className={`w-1.5 h-1.5 rounded-full ${p.inStock ? 'bg-emerald-500' : 'bg-red-500'}`} />
+                        <span className={`text-[9px] font-bold uppercase ${p.inStock ? 'text-emerald-500' : 'text-red-500'}`}>
+                          {p.inStock ? 'In Stock' : 'Out'}
+                        </span>
+                      </div>
+                    </div>
                   </div>
                   <div className="flex items-center justify-between pt-3 border-t border-zinc-100 dark:border-zinc-800">
                     <p className="font-bold text-brand-primary">

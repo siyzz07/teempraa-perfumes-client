@@ -150,28 +150,3 @@ export const useShopStore = create<ShopState>()((set, get) => ({
     }
   },
 }));
-
-/* ── Checkout Modal (global so any component can trigger it) ──── */
-interface CheckoutItem {
-  id: string;
-  name: string;
-  price: number;
-  qty: number;
-  image: string;
-}
-
-interface CheckoutState {
-  isOpen: boolean;
-  items: CheckoutItem[];
-  total: number;
-  openCheckout: (items: CheckoutItem[], total: number) => void;
-  closeCheckout: () => void;
-}
-
-export const useCheckoutStore = create<CheckoutState>()((set) => ({
-  isOpen: false,
-  items: [],
-  total: 0,
-  openCheckout: (items, total) => set({ isOpen: true, items, total }),
-  closeCheckout: () => set({ isOpen: false, items: [], total: 0 }),
-}));

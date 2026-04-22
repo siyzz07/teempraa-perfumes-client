@@ -8,7 +8,8 @@ import {
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Product } from "../../types";
-import { useCartStore, useCheckoutStore } from "../../store/useStore";
+import { useCartStore, useShopStore } from "../../store/useStore";
+import { generateWhatsAppOrderUrl } from "../../utils/whatsapp";
 
 interface ProductDetailsModalProps {
   product: Product | null;
@@ -22,7 +23,8 @@ const ProductDetailsModal = ({
   onClose,
 }: ProductDetailsModalProps) => {
   const addItem = useCartStore((state) => state.addItem);
-  const openCheckout = useCheckoutStore((s) => s.openCheckout);
+  const settings = useShopStore((s) => s.settings);
+  const whatsappNumber = settings?.whatsapp || settings?.phone || "";
   const [activeImageIdx, setActiveImageIdx] = useState(0);
 
   useEffect(() => {
@@ -32,19 +34,18 @@ const ProductDetailsModal = ({
   if (!product) return null;
 
   const handleWhatsAppOrder = () => {
-    openCheckout(
-      [
-        {
-          id: product.id,
-          name: product.name,
-          price: product.price,
-          image: product.images[0],
-          qty: 1,
-        },
-      ],
+    const url = generateWhatsAppOrderUrl(
+      [{
+        name: product.name,
+        price: product.price,
+        qty: 1,
+        image: product.images[0]
+      }],
       product.price,
+      whatsappNumber
     );
-    onClose(); // close product detail modal
+    window.open(url, "_blank");
+    onClose();
   };
 
   const nextImage = () => {
@@ -193,8 +194,8 @@ const ProductDetailsModal = ({
                       
                       <div className="flex flex-col">
                         <span className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 mb-1">Status</span>
-                        <span className="text-sm font-black text-emerald-500 uppercase tracking-widest">
-                          In Resonance
+                        <span className={`text-sm font-black uppercase tracking-widest ${product.inStock ? 'text-emerald-500' : 'text-red-500'}`}>
+                          {product.inStock ? 'In Resonance' : 'Faded from Vault'}
                         </span>
                       </div>
                     </div>
@@ -228,15 +229,20 @@ const ProductDetailsModal = ({
                     <div className="flex flex-col sm:flex-row gap-6 mt-12">
                       <button
                         onClick={handleWhatsAppOrder}
-                        className="flex-[2] bg-emerald-500 hover:bg-emerald-400 text-[#011a14] py-6 px-8 rounded-2xl font-black text-xs uppercase tracking-[0.3em] shadow-[0_20px_40px_rgba(16,185,129,0.2)] active:scale-[0.98] transition-all duration-500 flex items-center justify-center gap-4 group"
+                        disabled={!product.inStock}
+                        className={`flex-[2] py-6 px-8 rounded-2xl font-black text-xs uppercase tracking-[0.3em] shadow-[0_20px_40px_rgba(16,185,129,0.2)] active:scale-[0.98] transition-all duration-500 flex items-center justify-center gap-4 group ${
+                          product.inStock 
+                          ? "bg-emerald-500 hover:bg-emerald-400 text-[#011a14]" 
+                          : "bg-zinc-800 text-zinc-500 cursor-not-allowed opacity-50 shadow-none border border-white/5"
+                        }`}
                       >
-                        Reserve on WhatsApp
-                        <MessageCircle size={20} className="group-hover:rotate-12 transition-transform" />
+                        {product.inStock ? "Reserve on WhatsApp" : "Not Available"}
+                        <MessageCircle size={20} className={product.inStock ? "group-hover:rotate-12 transition-transform" : ""} />
                       </button>
 
                       <button
                         onClick={() => {
-                          if (!product) return;
+                          if (!product || !product.inStock) return;
                           const id = product.id || (product as any)._id || Math.random().toString();
                           addItem({
                             id: id,
@@ -247,9 +253,14 @@ const ProductDetailsModal = ({
                           } as any);
                           onClose();
                         }}
-                        className="flex-1 bg-white/5 hover:bg-white/10 text-white border border-white/10 py-6 px-8 rounded-2xl font-black text-xs uppercase tracking-[0.3em] backdrop-blur-xl active:scale-[0.98] transition-all duration-500 flex items-center justify-center gap-4"
+                        disabled={!product.inStock}
+                        className={`flex-1 py-6 px-8 rounded-2xl font-black text-xs uppercase tracking-[0.3em] backdrop-blur-xl active:scale-[0.98] transition-all duration-500 flex items-center justify-center gap-4 border ${
+                          product.inStock 
+                          ? "bg-white/5 hover:bg-white/10 text-white border-white/10" 
+                          : "bg-transparent text-zinc-600 border-white/5 cursor-not-allowed opacity-40"
+                        }`}
                       >
-                        Add to Bag
+                        {product.inStock ? "Add to Bag" : "Sold Out"}
                         <ShoppingBag size={20} />
                       </button>
                     </div>

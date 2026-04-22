@@ -1,15 +1,18 @@
 import { X, Trash2, ShoppingBag, Plus, Minus, ArrowRight, ShoppingCart } from 'lucide-react';
-import { useCartStore, useCheckoutStore, useCartUIStore } from '../../store/useStore';
+import { useCartStore, useCartUIStore, useShopStore } from '../../store/useStore';
+import { generateWhatsAppOrderUrl } from '../../utils/whatsapp';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const CartModal = () => {
   const { items, removeItem, updateQty, getTotal, clearCart } = useCartStore();
   const { isOpen, toggleCart } = useCartUIStore();
-  const openCheckout = useCheckoutStore((s) => s.openCheckout);
+  const settings = useShopStore((s) => s.settings);
+  const whatsappNumber = settings?.whatsapp || settings?.phone || "";
 
   const handleOrderClick = () => {
     if (items.length === 0) return;
-    openCheckout(items, getTotal());
+    const url = generateWhatsAppOrderUrl(items, getTotal(), whatsappNumber);
+    window.open(url, '_blank');
     toggleCart(false);
   };
 
